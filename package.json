@@ -1,0 +1,24 @@
+{
+  "name": "to_do_list",
+  "version": "1.0.0",
+  "description": "A simple to-do list using HTTP server backend",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jasona122/to_do_list.git"
+  },
+  "author": "Jason A",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jasona122/to_do_list/issues"
+  },
+  "homepage": "https://github.com/jasona122/to_do_list#readme",
+  "dependencies": {
+    "ejs": "^3.1.5",
+    "express": "^4.17.1"
+  }
+}
