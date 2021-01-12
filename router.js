@@ -7,15 +7,20 @@ let list = new ToDoList();
 // Serves GET requests
 router.get("/", function(req, res) {
     let listItems = list.getAllItems();
-    res.render("index.html", {listItems: listItems});
+    res.render("index", {listItems: listItems});
 });
 
 // Serves POST requests
 router.post("/item", function(req, res) {
-    console.log(req.body);
+    let itemData = req.body;
+    let newItem = new ListItem(itemData.name, itemData.description, itemData.date);
+    list.add(newItem);
+    return res.redirect("/");
 });
 
 // Serves DELETE requests
 router.delete("/item", function(req, res) {
-    console.log(req.body);
+    console.log(req);
 });
+
+module.exports = router;

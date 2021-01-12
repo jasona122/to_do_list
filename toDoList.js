@@ -8,13 +8,13 @@ class ToDoList {
     }
 
     remove(itemID) {
-
+        listItem.splice(itemID, 1);
     }
 
     getAllItems() {
         return this._items;
     }
-}
 
+}
 
 module.exports = ToDoList;
