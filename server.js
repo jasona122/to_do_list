@@ -8,13 +8,13 @@ let app = express();
 app.engine("html", ejs.renderFile);
 app.set("view engine", "html");
 
-// Add body-parser middleware
+// Add body-parser middleware to read JSON body from requests
 app.use(bodyParser.urlencoded({
     extended: false
 }));
 app.use(bodyParser.json())
 
-// Add router middleware
+// Add router middleware to serve HTTP requests
 app.use("/", router);
 
 // Start server; listening to port 8000

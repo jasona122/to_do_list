@@ -20,7 +20,9 @@ router.post("/item", function(req, res) {
 
 // Serves DELETE requests
 router.delete("/item", function(req, res) {
-    console.log(req);
+    let listItemID = req.body.itemID;
+    list.remove(listItemID);
+    return res.redirect("/");
 });
 
 module.exports = router;

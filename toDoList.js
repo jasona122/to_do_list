@@ -8,7 +8,7 @@ class ToDoList {
     }
 
     remove(itemID) {
-        listItem.splice(itemID, 1);
+        this._items.splice(itemID, 1);
     }
 
     getAllItems() {

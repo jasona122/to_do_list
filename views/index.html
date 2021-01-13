@@ -7,7 +7,7 @@
         <div class="jumbotron jumbotron-fluid">
             <div class="container">
               <h1 class="display-4">To-Do List</h1>
-              <p class="lead">This is a to-do list program to add and check off list items</p>
+              <p class="lead">This is a to-do list program to add and remove list items</p>
             </div>
         </div>
 
@@ -29,7 +29,7 @@
             </label>
             <input class="form-control" type="datetime-local" id="listItemDate">
         </div>
-        <button type="button" class="btn btn-primary" id="addItemBtn">Add Item</button>
+        <button type="button" class="btn btn-info" id="addItemBtn">Add Item</button>
         <br>
         <br>
         <nav class="navbar navbar-dark bg-dark">
@@ -47,10 +47,29 @@
                     <p class="mb-1"><%= listItem.description %></p>
                     <small><%= listItem.date %></small>
                 </a>
+                <small>
+                    <button type="button" class="btn btn-danger" id="addItemBtn<%= i %>" onclick="deleteListItem(<%= i %>)">Delete Item</button>
+                </small>
             <% } %>
           </div>
         <script>
-            // Script for completing POST and DELETE requests
+            // Function for button to send DELETE request to server
+            function deleteListItem(index) {
+                let itemToDelete = {
+                    itemID: index
+                };
+
+                let http = new XMLHttpRequest();
+                http.open("DELETE", "http://localhost:8000/item");
+                http.setRequestHeader("Content-Type", "application/json");
+                http.send(JSON.stringify(itemToDelete));
+
+                // Refresh the page for changes to take effect
+                location.reload(true);
+            }
+
+
+            // Script for completing POST request (in Add Item button)
             let addItemButton = document.getElementById("addItemBtn");
             addItemButton.addEventListener("click", function(event) {
                 // Get item data
