@@ -45,13 +45,18 @@
                         <h5 class="mb-1"><%= listItem.name %></h5>
                     </div>
                     <p class="mb-1"><%= listItem.description %></p>
-                    <small><%= listItem.date %></small>
+                    <small>Complete by: <%= listItem.date %></small>
                 </a>
                 <small>
                     <button type="button" class="btn btn-danger" id="addItemBtn<%= i %>" onclick="deleteListItem(<%= i %>)">Delete Item</button>
                 </small>
             <% } %>
-          </div>
+        </div>
+
+        <div class="alert alert-warning alert-dismissible fixed-top" id="alertMessage" hidden>
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            Please fill in the task name before adding to the to-do list.
+        </div>
         <script>
             // Function for button to send DELETE request to server
             function deleteListItem(index) {
@@ -68,10 +73,15 @@
                 location.reload(true);
             }
 
-
             // Script for completing POST request (in Add Item button)
             let addItemButton = document.getElementById("addItemBtn");
             addItemButton.addEventListener("click", function(event) {
+                // Make sure item name is not empty
+                if(document.getElementById("listItemName").value === "") {
+                    document.getElementById("alertMessage").hidden = false;
+                    return;
+                }
+
                 // Get item data
                 let itemData = {
                     name: document.getElementById("listItemName").value,
